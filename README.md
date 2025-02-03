@@ -2,7 +2,7 @@
 Projektarbeit Virtual Reality Wintersemester 2024/25
 
 ## Description
-Projektarbeit Virtual Reality, VR-Anwendung für Industial Painting bei Prof. Florian Machill,
+Projektarbeit Virtual Reality, VR-Anwendung für Barista-Training bei Prof. Florian Machill,
 Jonas Arnold und Alexis Maras, Wintersemester 2024/25, Visualisierung und Interaktion in digitalen Medien
 
 ### Features
