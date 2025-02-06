@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 public class CafeMill : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
+
+    [SerializeField] GameObject loadingIndicator;
     [SerializeField] Sieve sieve;
 
     [SerializeField] GameObject sieveGameObject;
@@ -24,6 +28,7 @@ public class CafeMill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        loadingIndicator.SetActive(false);
         grindDegreeSwitchJoint = grindDegreeSwitch.GetComponent<HingeJoint>();
         sieveCollider = sieveGameObject.GetComponent<BoxCollider>();
     }
@@ -42,6 +47,11 @@ public class CafeMill : MonoBehaviour
         else if (grindDegreeSwitchJoint.angle > (135f) && grindDegreeSwitchJoint.angle <= (225f))
         {
             grindDegree = 3;
+
+            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 1)
+            {
+                gameManager.tutorialStage = 2;
+            }
         }
         else if (grindDegreeSwitchJoint.angle > (225f) && grindDegreeSwitchJoint.angle <= (270f))
         {
@@ -59,11 +69,22 @@ public class CafeMill : MonoBehaviour
     IEnumerator FillSieveWithCafe()
     {
         Debug.Log("Start Filling");
-        yield return new WaitForSeconds(5);
+        loadingIndicator.SetActive(true);
+        loadingIndicator.GetComponent<Slider>().value = 0;
+        for (var i = 0; i < 5; i++)
+        {
+            loadingIndicator.GetComponent<Slider>().value += 1;
+            yield return new WaitForSeconds(1);
+        }
+        loadingIndicator.SetActive(false);
         sieve.cafeGrindDegree = grindDegree;
         sieve.containsCafe = true;
         sieveCollider.enabled = true;  
         fillSieve = false;
         Debug.Log("Filled");
-    } 
+        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 2)
+        {
+            gameManager.tutorialStage = 3;
+        }
+    }
 }

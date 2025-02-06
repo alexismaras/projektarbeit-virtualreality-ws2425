@@ -5,12 +5,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Sieve : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     [SerializeField] GameObject visualCafe;
     MeshRenderer visualCafeRenderer;
 
     [SerializeField] GameObject sieveTamperPressSocket;
     [SerializeField] XRSocketInteractor sieveTamperPressSocketInteractor;
     BoxCollider sieveTamperPressSocketCollider;
+    [SerializeField] XRSocketInteractor sieveTamperToolSocketInteractor;
 
     [SerializeField] XRSocketInteractor tamperStationSocketInteractor;
     public bool containsCafe;
@@ -41,12 +43,22 @@ public class Sieve : MonoBehaviour
         if (tamperStationSocketInteractor.hasSelection && !isTampered && containsCafe)
         {
             sieveTamperPressSocketCollider.enabled = true;
+
+            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 3)
+            {
+                gameManager.tutorialStage = 4;
+            }
         }
         if (sieveTamperPressSocketInteractor.hasSelection && !isTampered && containsCafe){
             isTampered = true;
         }
         if (!sieveTamperPressSocketInteractor.hasSelection && isTampered && containsCafe){
             sieveTamperPressSocketCollider.enabled = false;
+
+            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 4 && sieveTamperToolSocketInteractor.hasSelection)
+            {
+                gameManager.tutorialStage = 5;
+            }
         }
     }
 }
