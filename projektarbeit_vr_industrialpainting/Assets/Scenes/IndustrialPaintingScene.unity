@@ -1244,6 +1244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 454494131}
+  uiCanvas: {fileID: 600076364}
+  outputArea: {fileID: 107596704}
   screenTitle: {fileID: 1601589721}
   screenText: {fileID: 1500574700}
   button1: {fileID: 942006145}
@@ -2535,6 +2537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameLevel: 2
   tutorialStage: 0
+  examStage: 0
   uiManager: {fileID: 180042137}
   cafeCupGameObject: {fileID: 197990342}
   grindDegreeSwitchGameObject: {fileID: 946664008}

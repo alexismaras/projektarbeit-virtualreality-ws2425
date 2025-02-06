@@ -46,6 +46,11 @@ public class OutputArea : MonoBehaviour
             {
                 gameManager.tutorialStage = 10;
             }
+
+            if (gameManager.gameLevel == 2 && gameManager.examStage == 1)
+            {
+                gameManager.examStage = 2;
+            }
         }
     }   
 }

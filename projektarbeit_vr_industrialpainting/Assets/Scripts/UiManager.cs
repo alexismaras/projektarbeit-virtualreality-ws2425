@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Management;
 using UnityEngine.UI;
 using TMPro;
 
 public class UiManager : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+
+    [SerializeField] GameObject uiCanvas;
+
+    [SerializeField] OutputArea outputArea;
 
     [SerializeField] TMP_Text screenTitle;
     [SerializeField] TMP_Text screenText;
@@ -54,6 +59,22 @@ Der Kaffe Sieb muss etwa 30 Sekunden mit heißem Wasser gebrüht werden um die T
     string screenTitle9 = "Tutorial - Resultat";
     string screenText9 = @"Hast du dir alles gut gemerkt?
 Dann bist du jetzt dran, beweise, dass du bereit bist, einen perfekten Kaffee zu kochen!";
+
+    /// 
+    /// ////////////////////
+    /// gameLevel2
+
+    string introTitle2 = "Prüfung - Beweise Dein Können";
+    string introText2 = @"Befolge alle Schritte aus dem Tutorial um einen Kaffe zu kochen.
+Stelle den Kaffe in den Ausgabebereich um die Prüfung zu beenden.
+Bist du Bereit?";
+
+    string screenTitle11 = "Prüfung - Resultat";
+    string errorMsg1 = "Fehler 1; ";
+    string errorMsg2 = "Fehler 2; ";
+    string errorMsg3 = "Fehler 3; ";
+    string errorMsg4 = "Fehler 4; ";
+    string errorMsg5 = "Fehler 5; ";
     // Start is called before the first frame update
     void Start()
     {
@@ -65,15 +86,33 @@ Dann bist du jetzt dran, beweise, dass du bereit bist, einen perfekten Kaffee zu
     {
         
     }
-    void ChangeStage(int stage)
+    void ChangeStage(int stage, int level)
     {
-        gameManager.tutorialStage = stage;
-        
+        if (level == 1)
+        {
+            gameManager.tutorialStage = stage;
+        }
+        else if (level == 2)
+        {
+            gameManager.examStage = stage;
+        }
     }
 
     void ChangeScene(int sceneToLoad)
     {
+        XRGeneralSettings.Instance.Manager.StopSubsystems();
         SceneManager.LoadScene(sceneToLoad);
+        XRGeneralSettings.Instance.Manager.StartSubsystems();
+    }
+
+    public void HideUiCanvas()
+    {
+        uiCanvas.SetActive(false);
+    }
+
+    public void ShowUiCanvas()
+    {
+        uiCanvas.SetActive(true);
     }
 
     public void ShowIntroScreen()
@@ -86,10 +125,8 @@ Dann bist du jetzt dran, beweise, dass du bereit bist, einen perfekten Kaffee zu
 
         button1.GetComponentInChildren<TextMeshProUGUI>().text = "JA";
 
-        button1.onClick.AddListener(delegate { ChangeStage(1); });
+        button1.onClick.AddListener(delegate { ChangeStage(1, 1); });
 
-
-        
     }
     public void ShowTutorialScreen1()
     {
@@ -169,6 +206,78 @@ Dann bist du jetzt dran, beweise, dass du bereit bist, einen perfekten Kaffee zu
 
         button1.GetComponentInChildren<TextMeshProUGUI>().text = "TUTORIAL WIEDERHOLEN";
         button2.GetComponentInChildren<TextMeshProUGUI>().text = "PRÜFUNG ABLEGEN";
+
+        button1.onClick.AddListener(delegate { ChangeScene(0); });
+        button2.onClick.AddListener(delegate { ChangeScene(1); });
+    }
+
+    public void ShowExamIntroScreen()
+    {
+        screenTitle.text = introTitle2;
+        screenText.text = introText2;
+
+        button1.gameObject.SetActive(true);
+        button2.gameObject.SetActive(false);
+
+        button1.GetComponentInChildren<TextMeshProUGUI>().text = "PRÜFUNG STARTEN";
+
+        button1.onClick.AddListener(delegate { ChangeStage(1, 2); });
+        
+    }
+
+    public void ShowExamResultScreen()
+    {
+        bool passedExam = true;
+        string finalErrorMsg = "Fehler: ";
+
+
+        if (outputArea.fillAmount >= 33 || outputArea.fillAmount <= 27)
+        {
+            passedExam = false;
+            finalErrorMsg = finalErrorMsg + errorMsg1;
+        }
+
+        if (!outputArea.brewWithSieve)
+        {
+            passedExam = false;
+            finalErrorMsg = finalErrorMsg + errorMsg2;
+        }
+
+        if (!outputArea.sieveContainsCafe)
+        {
+            passedExam = false;
+            finalErrorMsg = finalErrorMsg + errorMsg3;
+        }
+
+        if (!outputArea.sieveIsTampered)
+        {
+            passedExam = false;
+            finalErrorMsg = finalErrorMsg + errorMsg4;
+        }
+
+        if (outputArea.cafeGrindDegree != 3)
+        {
+            passedExam = false;
+            finalErrorMsg = finalErrorMsg + errorMsg5;
+        }
+
+        if (passedExam)
+        {
+            finalErrorMsg = "Herzlichen Glückwunsch, du hast Bestanden!";
+        }
+        else
+        {
+            finalErrorMsg = "Tut uns leid, Durchgefallen! " + finalErrorMsg;
+        }
+
+        screenTitle.text = screenTitle11;
+        screenText.text = finalErrorMsg;
+
+        button1.gameObject.SetActive(true);
+        button2.gameObject.SetActive(true);
+
+        button1.GetComponentInChildren<TextMeshProUGUI>().text = "TUTORIAL WIEDERHOLEN";
+        button2.GetComponentInChildren<TextMeshProUGUI>().text = "PRÜFUNG WIEDERHOLEN";
 
         button1.onClick.AddListener(delegate { ChangeScene(0); });
         button2.onClick.AddListener(delegate { ChangeScene(1); });

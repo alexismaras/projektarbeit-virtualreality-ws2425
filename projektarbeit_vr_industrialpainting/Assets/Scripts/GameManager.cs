@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public int gameLevel;
     public int tutorialStage = 0;
 
+    public int examStage = 0;
+
     [SerializeField] UiManager uiManager;
 
     [SerializeField] GameObject cafeCupGameObject;
@@ -87,10 +89,6 @@ public class GameManager : MonoBehaviour
         }
         else if (gameLevel == 2)
         {
-            Practice();
-        }
-        else if (gameLevel == 3)
-        {
             Exam();
         }
         
@@ -109,7 +107,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowIntroScreen();
 
@@ -125,7 +122,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen1();
 
@@ -141,7 +137,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = true;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen2();
         }
@@ -156,9 +151,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
-
-            // uiManager.ShowTutorialScreen3();
         }
 
         else if (tutorialStage == 4) //Put Sieve back to Tamperstation
@@ -172,7 +164,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = true;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen3();
         }
@@ -187,7 +178,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = true;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen4();
         }
@@ -203,7 +193,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = true;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen5();
         }
@@ -219,7 +208,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = true;
 
             uiManager.ShowTutorialScreen6();
         }
@@ -235,7 +223,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen7();
         }
@@ -251,7 +238,6 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = true;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen8();
         }
@@ -267,30 +253,63 @@ public class GameManager : MonoBehaviour
             outputAreaSocketCollider.enabled = false;
             sieveCollider.enabled = false;
             tamperToolCollider.enabled = false;
-            // cafeCupCollider.enabled = false;
 
             uiManager.ShowTutorialScreen9();
         }
 
     }
 
-    void Practice()
-    {
-
-    }
-
     void Exam()
     {
+        if (examStage == 0) //UI Press Yes
+        {
+            cafeMachinePumpLeverCollider.enabled = false;
+            cafeMachineSwitchCollider.enabled = false;
+            grindDegreeSwitchCollider.enabled = false;
+            cafeMillSocketCollider.enabled = false;
+            cafeMachineSieveSocketCollider.enabled = false;
+            cafeMachineCupSocketCollider.enabled = false;
+            outputAreaSocketCollider.enabled = false;
+            sieveCollider.enabled = false;
+            tamperToolCollider.enabled = false;
+
+            uiManager.ShowExamIntroScreen();
+
+        }
+
+        if (examStage == 1) //UI Press Yes
+        {
+            cafeMachinePumpLeverCollider.enabled = true;
+            cafeMachineSwitchCollider.enabled = true;
+            grindDegreeSwitchCollider.enabled = true;
+            cafeMillSocketCollider.enabled = true;
+            cafeMachineSieveSocketCollider.enabled = true;
+            cafeMachineCupSocketCollider.enabled = true;
+            outputAreaSocketCollider.enabled = true;
+            sieveCollider.enabled = true;
+            tamperToolCollider.enabled = true;
+
+            uiManager.HideUiCanvas();
+
+        }
+
+        if (examStage == 2) //UI Press Yes
+        {
+            cafeMachinePumpLeverCollider.enabled = false;
+            cafeMachineSwitchCollider.enabled = false;
+            grindDegreeSwitchCollider.enabled = false;
+            cafeMillSocketCollider.enabled = false;
+            cafeMachineSieveSocketCollider.enabled = false;
+            cafeMachineCupSocketCollider.enabled = false;
+            outputAreaSocketCollider.enabled = false;
+            sieveCollider.enabled = false;
+            tamperToolCollider.enabled = false;
+
+            uiManager.ShowExamResultScreen();
+
+            uiManager.ShowUiCanvas();
+
+        }
 
     }
-
-    // void LockAll()
-    // {
-
-    // }
-
-    // void UnlockAll()
-    // {
-
-    // }
 }
