@@ -2533,8 +2533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e655c6cfbfd6d94bb362cacd9bb4c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLevel: 1
-  tutorialStage: 1
+  gameLevel: 2
+  tutorialStage: 0
   uiManager: {fileID: 180042137}
   cafeCupGameObject: {fileID: 197990342}
   grindDegreeSwitchGameObject: {fileID: 946664008}

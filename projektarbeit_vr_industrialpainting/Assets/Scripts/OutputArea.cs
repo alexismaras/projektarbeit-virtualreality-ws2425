@@ -42,9 +42,9 @@ public class OutputArea : MonoBehaviour
             sieveIsTampered = cafeCup.sieveIsTampered;
             cafeGrindDegree = cafeCup.cafeGrindDegree;
 
-            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 8)
+            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 9)
             {
-                gameManager.tutorialStage = 9;
+                gameManager.tutorialStage = 10;
             }
         }
     }   

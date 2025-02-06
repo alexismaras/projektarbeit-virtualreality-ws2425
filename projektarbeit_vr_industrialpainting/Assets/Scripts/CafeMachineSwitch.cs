@@ -55,11 +55,11 @@ public class CafeMachineSwitch : XRGrabInteractable
 
     void Update()
     {
-        if (Mathf.Abs(hinge.angle - restingPoint1) < Mathf.Abs(hinge.angle - restingPoint2))
+        if (Mathf.Round(hinge.angle) == Mathf.Round(restingPoint1))
         {
             switchOn = false;
         }
-        else
+        else if (Mathf.Round(hinge.angle) == Mathf.Round(restingPoint2))
         {
             switchOn = true;
         }

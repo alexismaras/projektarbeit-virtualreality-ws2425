@@ -87,14 +87,14 @@ public class CafeMachine : MonoBehaviour
             }
         }
 
-        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 5 && sieveSocket.hasSelection)
-        {
-            gameManager.tutorialStage = 6;
-        }
-
-        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 6 && cafeCupSocket.hasSelection)
+        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 6 && sieveSocket.hasSelection)
         {
             gameManager.tutorialStage = 7;
+        }
+
+        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 7 && cafeCupSocket.hasSelection)
+        {
+            gameManager.tutorialStage = 8;
         }
     }
 
@@ -114,9 +114,9 @@ public class CafeMachine : MonoBehaviour
         cafeCupSocketCollider.enabled = true;
         cafeFlowVisualizationRenderer.enabled = false;
         ejectingHotWater = false;
-        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 7)
+        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 8)
         {
-            gameManager.tutorialStage = 8;
+            gameManager.tutorialStage = 9;
         }
     }
 

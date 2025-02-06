@@ -44,9 +44,9 @@ public class Sieve : MonoBehaviour
         {
             sieveTamperPressSocketCollider.enabled = true;
 
-            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 3)
+            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 4)
             {
-                gameManager.tutorialStage = 4;
+                gameManager.tutorialStage = 5;
             }
         }
         if (sieveTamperPressSocketInteractor.hasSelection && !isTampered && containsCafe){
@@ -55,9 +55,9 @@ public class Sieve : MonoBehaviour
         if (!sieveTamperPressSocketInteractor.hasSelection && isTampered && containsCafe){
             sieveTamperPressSocketCollider.enabled = false;
 
-            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 4 && sieveTamperToolSocketInteractor.hasSelection)
+            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 5 && sieveTamperToolSocketInteractor.hasSelection)
             {
-                gameManager.tutorialStage = 5;
+                gameManager.tutorialStage = 6;
             }
         }
     }

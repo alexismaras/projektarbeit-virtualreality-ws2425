@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -68,6 +69,11 @@ Dann bist du jetzt dran, beweise, dass du bereit bist, einen perfekten Kaffee zu
     {
         gameManager.tutorialStage = stage;
         
+    }
+
+    void ChangeScene(int sceneToLoad)
+    {
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public void ShowIntroScreen()
@@ -163,5 +169,8 @@ Dann bist du jetzt dran, beweise, dass du bereit bist, einen perfekten Kaffee zu
 
         button1.GetComponentInChildren<TextMeshProUGUI>().text = "TUTORIAL WIEDERHOLEN";
         button2.GetComponentInChildren<TextMeshProUGUI>().text = "PRÜFUNG ABLEGEN";
+
+        button1.onClick.AddListener(delegate { ChangeScene(0); });
+        button2.onClick.AddListener(delegate { ChangeScene(1); });
     }
 }

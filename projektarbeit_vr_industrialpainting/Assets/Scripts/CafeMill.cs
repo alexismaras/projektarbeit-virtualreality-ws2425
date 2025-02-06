@@ -60,6 +60,10 @@ public class CafeMill : MonoBehaviour
 
         if (socketInteractor.hasSelection && !fillSieve && !sieve.containsCafe)
         {
+            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 2)
+            {
+                gameManager.tutorialStage = 3;
+            }
             fillSieve = true;
             sieveCollider.enabled = false;  
             StartCoroutine(FillSieveWithCafe());
@@ -82,9 +86,9 @@ public class CafeMill : MonoBehaviour
         sieveCollider.enabled = true;  
         fillSieve = false;
         Debug.Log("Filled");
-        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 2)
+        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 3)
         {
-            gameManager.tutorialStage = 3;
+            gameManager.tutorialStage = 4;
         }
     }
 }

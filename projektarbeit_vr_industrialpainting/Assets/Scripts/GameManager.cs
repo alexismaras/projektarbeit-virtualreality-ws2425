@@ -145,7 +145,23 @@ public class GameManager : MonoBehaviour
 
             uiManager.ShowTutorialScreen2();
         }
-        else if (tutorialStage == 3) //Put Sieve back to Tamperstation
+        else if (tutorialStage == 3) //Wait for Grinder
+        {
+            cafeMachinePumpLeverCollider.enabled = false;
+            cafeMachineSwitchCollider.enabled = false;
+            grindDegreeSwitchCollider.enabled = false;
+            cafeMillSocketCollider.enabled = false;
+            cafeMachineSieveSocketCollider.enabled = false;
+            cafeMachineCupSocketCollider.enabled = false;
+            outputAreaSocketCollider.enabled = false;
+            sieveCollider.enabled = false;
+            tamperToolCollider.enabled = false;
+            // cafeCupCollider.enabled = false;
+
+            // uiManager.ShowTutorialScreen3();
+        }
+
+        else if (tutorialStage == 4) //Put Sieve back to Tamperstation
         {
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
@@ -160,7 +176,7 @@ public class GameManager : MonoBehaviour
 
             uiManager.ShowTutorialScreen3();
         }
-        else if (tutorialStage == 4) //Tamper the Sieve and Put Tamper back
+        else if (tutorialStage == 5) //Tamper the Sieve and Put Tamper back
         {
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
@@ -176,7 +192,7 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen4();
         }
 
-        else if (tutorialStage == 5) //Sieve Inside CafeMachine
+        else if (tutorialStage == 6) //Sieve Inside CafeMachine
         {
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
@@ -192,7 +208,7 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen5();
         }
 
-        else if (tutorialStage == 6) //Put Cup Under
+        else if (tutorialStage == 7) //Put Cup Under
         {
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
@@ -208,7 +224,7 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen6();
         }
 
-        else if (tutorialStage == 7) //Pull Lever of Cafe Machine
+        else if (tutorialStage == 8) //Pull Lever of Cafe Machine
         {
             cafeMachinePumpLeverCollider.enabled = true;
             cafeMachineSwitchCollider.enabled = true;
@@ -224,7 +240,7 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen7();
         }
 
-        else if (tutorialStage == 8) //Put Cafe in Output Area
+        else if (tutorialStage == 9) //Put Cafe in Output Area
         {
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
@@ -240,7 +256,7 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen8();
         }
 
-        else if (tutorialStage == 9) //Result
+        else if (tutorialStage == 10) //Result
         {
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
