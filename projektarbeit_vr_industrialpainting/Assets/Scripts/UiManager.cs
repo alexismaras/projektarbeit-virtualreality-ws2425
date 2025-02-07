@@ -20,6 +20,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] Button button1;
     [SerializeField] Button button2;
 
+    [SerializeField] AudioSource uiClickSound;
+
     string introTitle = "Intro";
     string introText = @"Wilkommen in Barista VR! Hier erlernst du wie man eine Siebträgermaschine richtig nutzt, um den perfekten Kaffee zu produzieren.
 Wir zeigen dir die einzelnen Arbeitsschritte und danach wirst du es ganz allein versuchen. Aber Vorsicht, wenn du einen Fehler machst, wird der Kaffee ungenießbar und du musst von vorn beginnen!
@@ -87,6 +89,7 @@ Bist du Bereit?";
     }
     void ChangeStage(int stage, int level)
     {
+        uiClickSound.Play();
         if (level == 1)
         {
             gameManager.stageStarted = false;
@@ -101,6 +104,7 @@ Bist du Bereit?";
 
     void ChangeScene(int sceneToLoad)
     {
+        uiClickSound.Play();
         XRGeneralSettings.Instance.Manager.StopSubsystems();
         SceneManager.LoadScene(sceneToLoad);
         XRGeneralSettings.Instance.Manager.StartSubsystems();

@@ -11,6 +11,7 @@ public class FourWaySwitch : MonoBehaviour
     [SerializeField] GameObject switchPos3;
     [SerializeField] GameObject switchPos4;
 
+    [SerializeField] AudioSource switchSound;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class FourWaySwitch : MonoBehaviour
         {
             switchPos = 1;
         }
+        switchSound.Play();
         
     }
 

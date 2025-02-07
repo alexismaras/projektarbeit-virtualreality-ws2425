@@ -6,6 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Sieve : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
+
+    XRGrabInteractable sieveInteractor;
     [SerializeField] GameObject visualCafe;
     MeshRenderer visualCafeRenderer;
 
@@ -15,6 +17,9 @@ public class Sieve : MonoBehaviour
     [SerializeField] XRSocketInteractor sieveTamperToolSocketInteractor;
 
     [SerializeField] XRSocketInteractor tamperStationSocketInteractor;
+
+    [SerializeField] AudioSource switchSound;
+
     public bool containsCafe;
     public bool isTampered;
 
@@ -23,6 +28,10 @@ public class Sieve : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sieveInteractor = GetComponent<XRGrabInteractable>();
+        sieveInteractor.selectEntered.AddListener(OnObjectAttached);
+        sieveInteractor.selectExited.AddListener(OnObjectDetached);
+
         visualCafeRenderer = visualCafe.GetComponent<MeshRenderer>();
         visualCafeRenderer.enabled = false;
         sieveTamperPressSocketCollider = sieveTamperPressSocket.GetComponent<BoxCollider>();
@@ -62,5 +71,27 @@ public class Sieve : MonoBehaviour
                 gameManager.tutorialStage = 6;
             }
         }
+    }
+
+    void OnObjectAttached(SelectEnterEventArgs args)
+    {
+        if (args.interactorObject is XRSocketInteractor)
+        {
+            switchSound.Play();
+        }
+    }
+
+    void OnObjectDetached(SelectExitEventArgs args)
+    {
+        if (args.interactorObject is XRSocketInteractor)
+        {
+            switchSound.Play();
+        }
+    }
+    
+    void OnDestroy()
+    {
+        sieveInteractor.selectEntered.RemoveListener(OnObjectAttached);
+        sieveInteractor.selectExited.RemoveListener(OnObjectDetached);
     }
 }

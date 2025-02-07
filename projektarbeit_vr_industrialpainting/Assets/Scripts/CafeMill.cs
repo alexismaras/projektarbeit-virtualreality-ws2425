@@ -18,6 +18,8 @@ public class CafeMill : MonoBehaviour
     [SerializeField] BoxCollider grindDegreeSwitchCollider;
     [SerializeField] FourWaySwitch grindDegreeSwitch;
     [SerializeField] XRSocketInteractor socketInteractor;
+
+    [SerializeField] AudioSource grindingSound;
     public int grindDegree = 1;
 
     bool fillSieve = false;
@@ -58,6 +60,7 @@ public class CafeMill : MonoBehaviour
 
     IEnumerator FillSieveWithCafe()
     {
+        grindingSound.Play();
         Debug.Log("Start Filling");
         loadingIndicator.SetActive(true);
         loadingIndicator.GetComponent<Slider>().value = 0;

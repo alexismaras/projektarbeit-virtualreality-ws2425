@@ -27,6 +27,8 @@ public class CafeMachine : MonoBehaviour
 
     MeshRenderer cafeFlowVisualizationRenderer;
 
+    [SerializeField] AudioSource brewingSound;
+
     bool cafeMachineOn;
 
     bool cafeMachinePumping;
@@ -106,6 +108,8 @@ public class CafeMachine : MonoBehaviour
 
     IEnumerator TimerAmount()
     {
+        brewingSound.loop = true;
+        brewingSound.Play();
         timeIndicator.text = (0).ToString();
         while (cafeMachineOn && cafeMachinePumping)
         {
@@ -117,6 +121,7 @@ public class CafeMachine : MonoBehaviour
             cafeCup.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Untouchable");
             sieve.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Untouchable");
         }
+        brewingSound.Stop();
         timeIndicator.text = "";
         PassValuesToCup();
         hotWaterAmount = 0;

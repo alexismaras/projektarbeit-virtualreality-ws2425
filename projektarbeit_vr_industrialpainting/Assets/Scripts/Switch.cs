@@ -8,6 +8,8 @@ public class Switch : MonoBehaviour
     [SerializeField] GameObject switchPosOff;
     [SerializeField] GameObject switchPosOn;
 
+    [SerializeField] AudioSource switchSound;
+
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class Switch : MonoBehaviour
     private void OnClicked(SelectEnterEventArgs args)
     {
         switchOn = !switchOn;
+        switchSound.Play();
     }
 
     void Update()
