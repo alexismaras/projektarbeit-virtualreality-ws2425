@@ -23,9 +23,5 @@ Supervised by Prof. Florian Machill (Virtual Reality WS 23/24)
 ## Third Party Credits
 
 ### Sound
-* Asset-Pack XY [Assetstore](https://assetstore.unity.com/)
-* Asset-Pack YZ [Assetstore](https://assetstore.unity.com/)
-
-### 3D Assets
-* Asset-Pack XY [Assetstore](https://assetstore.unity.com/)
-* Asset-Pack YZ [Assetstore](https://assetstore.unity.com/)
+* Musik: https://pixabay.com/de/music/smooth-jazz-jazz-funk-groove-instrumental-222618/
+* Sound Effekte: https://pixabay.com/de/sound-effects/coffee-machine-grinding-grains-making-coffee-55385/
