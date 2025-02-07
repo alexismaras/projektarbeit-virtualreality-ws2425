@@ -66,7 +66,6 @@ public class CafeMachine : MonoBehaviour
 
         if (cafeMachineOn && cafeMachinePumping)
         {
-            cafeCupSocketCollider.enabled = false;
             cafeFlowVisualizationRenderer.enabled = true;  
             
         }
@@ -80,7 +79,12 @@ public class CafeMachine : MonoBehaviour
                 {
                     ejectingHotWater = true;
                     cafeFlowVisualizationRenderer.enabled = true;
-                    cafeCupSocketCollider.enabled = false;
+                    if (cafeCupSocket.hasSelection)
+                    {
+                        cafeCup.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+                        sieve.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+
+                    }
                     StartCoroutine(TimerAmount());
                 }
 
@@ -106,14 +110,18 @@ public class CafeMachine : MonoBehaviour
         while (cafeMachineOn && cafeMachinePumping)
         {
             yield return new WaitForSeconds(1f);
+            
             timeIndicator.text = ((int.Parse(timeIndicator.text)) + 1).ToString();
             hotWaterAmount++;
             FillCup();
+            cafeCup.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            sieve.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Untouchable");
         }
         timeIndicator.text = "";
         PassValuesToCup();
         hotWaterAmount = 0;
-        cafeCupSocketCollider.enabled = true;
+        cafeCup.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Cup");
+        sieve.GetComponent<XRGrabInteractable>().interactionLayers = InteractionLayerMask.GetMask("Sieve");
         cafeFlowVisualizationRenderer.enabled = false;
         ejectingHotWater = false;
         if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 8)

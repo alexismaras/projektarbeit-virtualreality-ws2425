@@ -1,7 +1,0 @@
-Git Repository:
-
-https://github.com/alexismaras/projektarbeit-virtualreality-ws2425
-
-Itch.io:
-
-https://jonas3fifty.itch.io/barista-vr

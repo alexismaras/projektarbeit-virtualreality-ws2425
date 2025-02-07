@@ -6,12 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class OutputArea : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
-    [SerializeField] GameObject cafeCupSocketGameObject;
-    BoxCollider cafeCupSocketCollider;
     [SerializeField] XRSocketInteractor cafeCupSocket;
-
-    [SerializeField] GameObject cafeCupGameObject;
-    BoxCollider cafeCupCollider;
     [SerializeField] CafeCup cafeCup;
     public int fillAmount;
     public bool brewWithSieve;
@@ -23,8 +18,6 @@ public class OutputArea : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cafeCupSocketCollider = cafeCupSocketGameObject.GetComponent<BoxCollider>();
-        cafeCupCollider = cafeCupGameObject.GetComponent<BoxCollider>();
         cafeServed = false;   
     }
 
@@ -34,8 +27,6 @@ public class OutputArea : MonoBehaviour
         if (!cafeServed && cafeCupSocket.hasSelection)
         {
             cafeServed = true;
-            cafeCupSocketCollider.enabled = false;
-            cafeCupCollider.enabled = false;
             fillAmount = cafeCup.fillAmount;
             brewWithSieve = cafeCup.brewWithSieve;
             sieveContainsCafe = cafeCup.sieveContainsCafe;

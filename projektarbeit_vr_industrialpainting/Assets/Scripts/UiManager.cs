@@ -35,23 +35,23 @@ Stelle den Mahlgrad auf Stufe 3!";
 
     string screenTitle3 = "Tutorial - Schritt 2 - Kaffepulver Tampern";
     string screenText3 = @"Sehr gut. Das Pulver ist fertig, jetzt wird es im Siebträger verteilt.
-Lege den Sieb dazu in die Tamper-Station.";
+Lege den Sieb dazu in die Tamperstation.";
 
     string screenTitle4 = "Tutorial - Schritt 2 - Kaffepulver Tampern";    
-    string screenText4 = @"Jetzt musst du das Pulver noch tampern, damit der Kaffee weder zu wässrig noch zu bitter wird. Drücke dafür den Puck auf das Pulver!
-Lege anschließende den Puck zurück in die Haltevorrichtung.";
+    string screenText4 = @"Jetzt musst du das Pulver noch tampern, damit der Kaffee nicht zu wässrig wird. Drücke dafür den Puck auf das Pulver!
+Lege anschließende den Puck zurück in die Tamperstation.";
 
 
     string screenTitle5 = "Tutorial - Schritt 3 - Kaffe Brühen";    
-    string screenText5 = @"Nun kann es losgehen, stecke den Sieb in die Kaffeemaschine und schalte sie ein!";     
+    string screenText5 = @"Nun kann es losgehen, stecke den Sieb in die Kaffeemaschine!";     
 
     string screenTitle6 = "Tutorial - Schritt 3 - Kaffe Brühen";    
     string screenText6 = @"Damit der Kaffee nicht in die Leere geht, musst du noch eine Tasse unter den Sieb stellen.";
 
     string screenTitle7 = "Tutorial - Schritt 3 - Kaffe Brühen";
-    string screenText7 = @"Ziehe den Hebel um die Pumpe zu starten und den Kaffee zu brühen.
-Bei einer Siebträger musst du dich selbst darum kümmern, wie viel Wasser durch den Sieb fließt.
-Der Kaffee Sieb muss etwa 30 Sekunden mit heißem Wasser gebrüht werden um die Tasse zu füllen.";
+    string screenText7 = @"Schalte die Kaffeemaschine an und ziehe den Hebel um den Kaffee zu brühen.
+Bei einem Siebträger musst du dich selbst darum kümmern, wie viel Wasser durch den Sieb fließt.
+Der Kaffee Sieb muss ca. 30 Sekunden mit Wasser gebrüht werden um die Tasse zu füllen.";
 
     string screenTitle8 = "Tutorial - Schritt 4 - Warenausgabe";
     string screenText8 = @"Perfekt! Stelle zum Schluss die Tasse in die Warenausgabe."; 

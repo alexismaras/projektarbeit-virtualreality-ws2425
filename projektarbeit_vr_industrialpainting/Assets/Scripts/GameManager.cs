@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject cafeCupGameObject;
     CafeCup cafeCup;
+    XRGrabInteractable cafeCupInteractor;
     BoxCollider cafeCupCollider;
 
     [SerializeField] GameObject grindDegreeSwitchGameObject;
@@ -46,20 +47,26 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject sieveGameObject;
     Sieve sieve;
+    XRGrabInteractable sieveInteractor;
     BoxCollider sieveCollider;
 
     [SerializeField] GameObject tamperToolGameObject;
+    XRGrabInteractable tamperToolInteractor;    
     BoxCollider tamperToolCollider;
     // Start is called before the first frame update
     void Start()
     {
+
         cafeCup = cafeCupGameObject.GetComponent<CafeCup>();
+        cafeCupInteractor = cafeCup.GetComponent<XRGrabInteractable>();
         cafeCupCollider = cafeCupGameObject.GetComponent<BoxCollider>();
 
         sieve = sieveGameObject.GetComponent<Sieve>();
+        sieveInteractor = sieve.GetComponent<XRGrabInteractable>();
         sieveCollider = sieveGameObject.GetComponent<BoxCollider>();
 
         tamperToolCollider = tamperToolGameObject.GetComponent<BoxCollider>();
+        tamperToolInteractor = tamperToolGameObject.GetComponent<XRGrabInteractable>();
 
         grindDegreeSwitchCollider = grindDegreeSwitchGameObject.GetComponent<BoxCollider>();
 
@@ -108,8 +115,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowIntroScreen();
 
@@ -124,8 +132,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowTutorialScreen1();
 
@@ -140,8 +149,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = true;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Sieve");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowTutorialScreen2();
         }
@@ -155,8 +165,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
         }
 
         else if (tutorialStage == 4 && !stageStarted) //Put Sieve back to Tamperstation
@@ -169,8 +180,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = true;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Sieve");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowTutorialScreen3();
         }
@@ -184,8 +196,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = true;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Tamper");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowTutorialScreen4();
         }
@@ -200,8 +213,10 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = true;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = true;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Sieve");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+
 
             uiManager.ShowTutorialScreen5();
         }
@@ -216,8 +231,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = true;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Cup");
 
             uiManager.ShowTutorialScreen6();
         }
@@ -232,8 +248,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowTutorialScreen7();
         }
@@ -248,8 +265,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = true;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Cup");
 
             uiManager.ShowTutorialScreen8();
         }
@@ -264,8 +282,9 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowTutorialScreen9();
         }
@@ -284,14 +303,15 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
             outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowExamIntroScreen();
 
         }
 
-        if (examStage == 1 && !stageStarted) //UI Press Yes
+        if (examStage == 1 && !stageStarted) //Do your thing
         {
             stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = true;
@@ -301,14 +321,15 @@ public class GameManager : MonoBehaviour
             cafeMachineSieveSocketCollider.enabled = true;
             cafeMachineCupSocketCollider.enabled = true;
             outputAreaSocketCollider.enabled = true;
-            sieveCollider.enabled = true;
-            tamperToolCollider.enabled = true;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Sieve");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Tamper");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Cup");
 
             uiManager.HideUiCanvas();
 
         }
 
-        if (examStage == 2 && !stageStarted) //UI Press Yes
+        if (examStage == 2 && !stageStarted) //Result
         {
             stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
@@ -317,9 +338,10 @@ public class GameManager : MonoBehaviour
             cafeMillSocketCollider.enabled = false;
             cafeMachineSieveSocketCollider.enabled = false;
             cafeMachineCupSocketCollider.enabled = false;
-            outputAreaSocketCollider.enabled = false;
-            sieveCollider.enabled = false;
-            tamperToolCollider.enabled = false;
+            outputAreaSocketCollider.enabled = true;
+            sieveInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            tamperToolInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
+            cafeCupInteractor.interactionLayers = InteractionLayerMask.GetMask("Untouchable");
 
             uiManager.ShowExamResultScreen();
 
