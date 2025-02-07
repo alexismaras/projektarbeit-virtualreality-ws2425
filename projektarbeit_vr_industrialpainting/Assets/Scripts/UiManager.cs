@@ -46,12 +46,12 @@ Lege anschließende den Puck zurück in die Haltevorrichtung.";
     string screenText5 = @"Nun kann es losgehen, stecke den Sieb in die Kaffeemaschine und schalte sie ein!";     
 
     string screenTitle6 = "Tutorial - Schritt 3 - Kaffe Brühen";    
-    string screenText6 = @"Damit der Kaffe nicht in die Leere geht, musst du noch eine Tasse unter den Sieb stellen.";
+    string screenText6 = @"Damit der Kaffee nicht in die Leere geht, musst du noch eine Tasse unter den Sieb stellen.";
 
     string screenTitle7 = "Tutorial - Schritt 3 - Kaffe Brühen";
-    string screenText7 = @"Ziehe den Hebel um die Pumpe zu starten und den Kaffe zu brühen.
+    string screenText7 = @"Ziehe den Hebel um die Pumpe zu starten und den Kaffee zu brühen.
 Bei einer Siebträger musst du dich selbst darum kümmern, wie viel Wasser durch den Sieb fließt.
-Der Kaffe Sieb muss etwa 30 Sekunden mit heißem Wasser gebrüht werden um die Tasse zu füllen.";
+Der Kaffee Sieb muss etwa 30 Sekunden mit heißem Wasser gebrüht werden um die Tasse zu füllen.";
 
     string screenTitle8 = "Tutorial - Schritt 4 - Warenausgabe";
     string screenText8 = @"Perfekt! Stelle zum Schluss die Tasse in die Warenausgabe."; 
@@ -70,11 +70,10 @@ Stelle den Kaffe in den Ausgabebereich um die Prüfung zu beenden.
 Bist du Bereit?";
 
     string screenTitle11 = "Prüfung - Resultat";
-    string errorMsg1 = "Fehler 1; ";
-    string errorMsg2 = "Fehler 2; ";
-    string errorMsg3 = "Fehler 3; ";
-    string errorMsg4 = "Fehler 4; ";
-    string errorMsg5 = "Fehler 5; ";
+    string errorMsg1 = "Die Füllmenge der Kaffeetasse ist falsch. ";
+    string errorMsg2 = "In der Kaffeetasse ist nur heißes Wasser. ";
+    string errorMsg3 = "Der Kaffee ist zu wässrig. ";
+    string errorMsg4 = "Der Mahlgrad des Kaffees ist falsch. ";
     // Start is called before the first frame update
     void Start()
     {
@@ -90,10 +89,12 @@ Bist du Bereit?";
     {
         if (level == 1)
         {
+            gameManager.stageStarted = false;
             gameManager.tutorialStage = stage;
         }
         else if (level == 2)
         {
+            gameManager.stageStarted = false;
             gameManager.examStage = stage;
         }
     }
@@ -222,7 +223,6 @@ Bist du Bereit?";
         button1.GetComponentInChildren<TextMeshProUGUI>().text = "PRÜFUNG STARTEN";
 
         button1.onClick.AddListener(delegate { ChangeStage(1, 2); });
-        
     }
 
     public void ShowExamResultScreen()
@@ -234,31 +234,25 @@ Bist du Bereit?";
         if (outputArea.fillAmount >= 33 || outputArea.fillAmount <= 27)
         {
             passedExam = false;
-            finalErrorMsg = finalErrorMsg + errorMsg1;
+            finalErrorMsg = $"{finalErrorMsg}\n{errorMsg1}";
         }
 
-        if (!outputArea.brewWithSieve)
+        if (!outputArea.brewWithSieve || !outputArea.sieveContainsCafe)
         {
             passedExam = false;
-            finalErrorMsg = finalErrorMsg + errorMsg2;
-        }
-
-        if (!outputArea.sieveContainsCafe)
-        {
-            passedExam = false;
-            finalErrorMsg = finalErrorMsg + errorMsg3;
+            finalErrorMsg = $"{finalErrorMsg}\n{errorMsg2}";
         }
 
         if (!outputArea.sieveIsTampered)
         {
             passedExam = false;
-            finalErrorMsg = finalErrorMsg + errorMsg4;
+            finalErrorMsg = $"{finalErrorMsg}\n{errorMsg3}";
         }
 
         if (outputArea.cafeGrindDegree != 3)
         {
             passedExam = false;
-            finalErrorMsg = finalErrorMsg + errorMsg5;
+            finalErrorMsg = $"{finalErrorMsg}\n{errorMsg4}";
         }
 
         if (passedExam)
@@ -267,7 +261,7 @@ Bist du Bereit?";
         }
         else
         {
-            finalErrorMsg = "Tut uns leid, Durchgefallen! " + finalErrorMsg;
+            finalErrorMsg = $"Tut uns leid, Durchgefallen!\n{finalErrorMsg}";
         }
 
         screenTitle.text = screenTitle11;

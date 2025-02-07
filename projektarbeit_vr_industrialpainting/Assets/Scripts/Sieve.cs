@@ -46,6 +46,7 @@ public class Sieve : MonoBehaviour
 
             if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 4)
             {
+                gameManager.stageStarted = false;
                 gameManager.tutorialStage = 5;
             }
         }
@@ -57,6 +58,7 @@ public class Sieve : MonoBehaviour
 
             if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 5 && sieveTamperToolSocketInteractor.hasSelection)
             {
+                gameManager.stageStarted = false;
                 gameManager.tutorialStage = 6;
             }
         }

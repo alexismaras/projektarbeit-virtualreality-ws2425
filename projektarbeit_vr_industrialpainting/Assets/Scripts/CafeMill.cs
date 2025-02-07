@@ -14,14 +14,11 @@ public class CafeMill : MonoBehaviour
     [SerializeField] GameObject sieveGameObject;
 
     BoxCollider sieveCollider; 
-
-    [SerializeField] XRGrabInteractable sieveInteractable;
     
-    [SerializeField] GameObject grindDegreeSwitch;
+    [SerializeField] BoxCollider grindDegreeSwitchCollider;
+    [SerializeField] FourWaySwitch grindDegreeSwitch;
     [SerializeField] XRSocketInteractor socketInteractor;
-
-    HingeJoint grindDegreeSwitchJoint;
-    public int grindDegree;
+    public int grindDegree = 1;
 
     bool fillSieve = false;
 
@@ -29,42 +26,31 @@ public class CafeMill : MonoBehaviour
     void Start()
     {
         loadingIndicator.SetActive(false);
-        grindDegreeSwitchJoint = grindDegreeSwitch.GetComponent<HingeJoint>();
         sieveCollider = sieveGameObject.GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (grindDegreeSwitchJoint.angle >= (-45f) && grindDegreeSwitchJoint.angle <= (45f))
+        if (grindDegree != grindDegreeSwitch.switchPos)
         {
-            grindDegree = 1;
+            grindDegree = grindDegreeSwitch.switchPos;
         }
-        else if (grindDegreeSwitchJoint.angle > (45f) && grindDegreeSwitchJoint.angle <= (135f))
+        if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 1 && grindDegree == 3)
         {
-            grindDegree = 2;
-        }
-        else if (grindDegreeSwitchJoint.angle > (135f) && grindDegreeSwitchJoint.angle <= (225f))
-        {
-            grindDegree = 3;
-
-            if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 1)
-            {
-                gameManager.tutorialStage = 2;
-            }
-        }
-        else if (grindDegreeSwitchJoint.angle > (225f) && grindDegreeSwitchJoint.angle <= (270f))
-        {
-            grindDegree = 4;
+            gameManager.stageStarted = false;
+            gameManager.tutorialStage = 2;
         }
 
         if (socketInteractor.hasSelection && !fillSieve && !sieve.containsCafe)
         {
             if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 2)
             {
+                gameManager.stageStarted = false;
                 gameManager.tutorialStage = 3;
             }
             fillSieve = true;
+            grindDegreeSwitchCollider.enabled = false;
             sieveCollider.enabled = false;  
             StartCoroutine(FillSieveWithCafe());
         }
@@ -83,11 +69,13 @@ public class CafeMill : MonoBehaviour
         loadingIndicator.SetActive(false);
         sieve.cafeGrindDegree = grindDegree;
         sieve.containsCafe = true;
+        grindDegreeSwitchCollider.enabled = true;
         sieveCollider.enabled = true;  
         fillSieve = false;
         Debug.Log("Filled");
         if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 3)
         {
+            gameManager.stageStarted = false;
             gameManager.tutorialStage = 4;
         }
     }

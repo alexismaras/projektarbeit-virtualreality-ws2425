@@ -64,4 +64,6 @@ public class CafeMachineSwitch : XRGrabInteractable
             switchOn = true;
         }
     }
+
+    
 }

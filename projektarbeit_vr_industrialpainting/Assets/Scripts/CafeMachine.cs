@@ -9,8 +9,8 @@ public class CafeMachine : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     [SerializeField] TMP_Text timeIndicator;
-    [SerializeField] CafeMachineSwitch cafeMachineSwitch;
-    [SerializeField] CafeMachineSwitch cafeMachinePumpLever;
+    [SerializeField] Switch cafeMachineSwitch;
+    [SerializeField] Switch cafeMachinePumpLever;
 
     [SerializeField] CafeCup cafeCup;
 
@@ -89,11 +89,13 @@ public class CafeMachine : MonoBehaviour
 
         if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 6 && sieveSocket.hasSelection)
         {
+            gameManager.stageStarted = false;
             gameManager.tutorialStage = 7;
         }
 
         if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 7 && cafeCupSocket.hasSelection)
         {
+            gameManager.stageStarted = false;
             gameManager.tutorialStage = 8;
         }
     }
@@ -116,6 +118,7 @@ public class CafeMachine : MonoBehaviour
         ejectingHotWater = false;
         if (gameManager.gameLevel == 1 && gameManager.tutorialStage == 8)
         {
+            gameManager.stageStarted = false;
             gameManager.tutorialStage = 9;
         }
     }

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public int examStage = 0;
 
+    public bool stageStarted = false;
+
     [SerializeField] UiManager uiManager;
 
     [SerializeField] GameObject cafeCupGameObject;
@@ -96,8 +98,9 @@ public class GameManager : MonoBehaviour
 
     void Tutorial()
     {
-        if (tutorialStage == 0) //UI Press Yes
+        if (tutorialStage == 0 && !stageStarted) //UI Press Yes
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -111,8 +114,9 @@ public class GameManager : MonoBehaviour
             uiManager.ShowIntroScreen();
 
         }
-        else if (tutorialStage == 1) //GrindDegree to 3
+        else if (tutorialStage == 1 && !stageStarted) //GrindDegree to 3
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = true;
@@ -126,8 +130,9 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen1();
 
         }
-        else if (tutorialStage == 2) //Put Sieve from Tamperstation inside Grinder
+        else if (tutorialStage == 2 && !stageStarted) //Put Sieve from Tamperstation inside Grinder
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -140,8 +145,9 @@ public class GameManager : MonoBehaviour
 
             uiManager.ShowTutorialScreen2();
         }
-        else if (tutorialStage == 3) //Wait for Grinder
+        else if (tutorialStage == 3 && !stageStarted) //Wait for Grinder
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -153,8 +159,9 @@ public class GameManager : MonoBehaviour
             tamperToolCollider.enabled = false;
         }
 
-        else if (tutorialStage == 4) //Put Sieve back to Tamperstation
+        else if (tutorialStage == 4 && !stageStarted) //Put Sieve back to Tamperstation
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -167,8 +174,9 @@ public class GameManager : MonoBehaviour
 
             uiManager.ShowTutorialScreen3();
         }
-        else if (tutorialStage == 5) //Tamper the Sieve and Put Tamper back
+        else if (tutorialStage == 5 && !stageStarted) //Tamper the Sieve and Put Tamper back
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -182,8 +190,9 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen4();
         }
 
-        else if (tutorialStage == 6) //Sieve Inside CafeMachine
+        else if (tutorialStage == 6 && !stageStarted) //Sieve Inside CafeMachine
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -197,8 +206,9 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen5();
         }
 
-        else if (tutorialStage == 7) //Put Cup Under
+        else if (tutorialStage == 7 && !stageStarted) //Put Cup Under
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -212,8 +222,9 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen6();
         }
 
-        else if (tutorialStage == 8) //Pull Lever of Cafe Machine
+        else if (tutorialStage == 8 && !stageStarted) //Pull Lever of Cafe Machine
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = true;
             cafeMachineSwitchCollider.enabled = true;
             grindDegreeSwitchCollider.enabled = false;
@@ -227,8 +238,9 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen7();
         }
 
-        else if (tutorialStage == 9) //Put Cafe in Output Area
+        else if (tutorialStage == 9 && !stageStarted) //Put Cafe in Output Area
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -242,8 +254,9 @@ public class GameManager : MonoBehaviour
             uiManager.ShowTutorialScreen8();
         }
 
-        else if (tutorialStage == 10) //Result
+        else if (tutorialStage == 10 && !stageStarted) //Result
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -261,8 +274,9 @@ public class GameManager : MonoBehaviour
 
     void Exam()
     {
-        if (examStage == 0) //UI Press Yes
+        if (examStage == 0 && !stageStarted) //UI Press Yes
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
@@ -277,8 +291,9 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (examStage == 1) //UI Press Yes
+        if (examStage == 1 && !stageStarted) //UI Press Yes
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = true;
             cafeMachineSwitchCollider.enabled = true;
             grindDegreeSwitchCollider.enabled = true;
@@ -293,8 +308,9 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (examStage == 2) //UI Press Yes
+        if (examStage == 2 && !stageStarted) //UI Press Yes
         {
+            stageStarted = true;
             cafeMachinePumpLeverCollider.enabled = false;
             cafeMachineSwitchCollider.enabled = false;
             grindDegreeSwitchCollider.enabled = false;
